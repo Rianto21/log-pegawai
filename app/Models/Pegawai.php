@@ -31,17 +31,17 @@ class Pegawai extends Authenticatable
 
   public function dinas(): BelongsTo
   {
-    return $this->belongsTo(Dinas::class);
+    return $this->belongsTo(Dinas::class, 'id_dinas', 'id_dinas');
   }
 
   public function bagian(): BelongsTo
   {
-    return $this->belongsTo(Bagian::class);
+    return $this->belongsTo(Bagian::class, 'id_bagian', 'id_bagian');
   }
 
-  public function jabatan(): BelongsTo
+  public function jabatan_method(): BelongsTo
   {
-    return $this->belongsTo(Jabatan::class);
+    return $this->belongsTo(Jabatan::class, 'jabatan', 'id_jabatan');
   }
 
   public function log_harian(): HasMany

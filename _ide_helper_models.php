@@ -140,11 +140,12 @@ namespace App\Models{
  * @property string $nama_pegawai
  * @property int $id_dinas
  * @property int $id_bagian
- * @property \App\Models\Jabatan|null $jabatan
+ * @property int $jabatan
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Bagian|null $bagian
- * @property-read \App\Models\Dinas|null $dinas
+ * @property-read \App\Models\Bagian $bagian
+ * @property-read \App\Models\Dinas $dinas
+ * @property-read \App\Models\Jabatan $jabatan_method
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\LogHarian> $log_harian
  * @property-read int|null $log_harian_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications

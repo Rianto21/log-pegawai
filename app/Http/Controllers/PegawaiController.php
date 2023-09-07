@@ -14,8 +14,8 @@ class PegawaiController extends Controller
    */
   public function index()
   {
-    $daftar_pegawai = Pegawai::whereIdDinas(auth('pegawai')->user()->id_dinas)->get();
-
+    $daftar_pegawai = Pegawai::whereIdDinas(auth('pegawai')->user()->id_dinas)->with(['dinas', 'bagian', 'jabatan_method'])->orderBy('jabatan', 'asc')->get();
+    // dd($daftar_pegawai);
     return view('pegawai.index')->with(array(
       'daftar_pegawai' => $daftar_pegawai
     ));
