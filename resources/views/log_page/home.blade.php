@@ -95,6 +95,32 @@
         @endforeach
       </tbody>
     </table>
+
+    @if (count($daftar_pegawai) >= 1)
+      <h2 class="text-4xl font-righteous text-yellow-600 mb-4 text-center">Daftar Pegawai Bawahan</h2>
+      <table class="w-[40rem] border mx-auto border-neutral-600 mb-20">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 text-white bg-neutral-600 w-[8rem]">Nama</th>
+            <th class="px-4 py-2 text-white bg-neutral-600">Email</th>
+            <th class="px-4 py-2 text-white bg-neutral-600">Action</th>
+            <!-- Add more table headers as needed -->
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($daftar_pegawai as $pegawai)
+            <tr>
+              <td class="px-4 py-2 border-neutral-400 border">{{ $pegawai->nama_pegawai }}</td>
+              <td class="px-4 py-2 border-neutral-400 border">{{ $pegawai->email }}</td>
+              <td class="px-4 py-2 border-neutral-400 border text-center"><a
+                  class="text-center font-roboto text-white bg-blue-800 hover:bg-white hover:text-blue-800 hover:shadow-md hover:shadow-emerald-600/40 py-2 px-6 rounded-full duration-200"
+                  href="/log-harian/verifikasi/{{ $pegawai->id_pegawai }}">Lihat Log Harian</a></td>
+              <!-- Add more table cells for other attributes -->
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+    @endif
   </div>
 </body>
 

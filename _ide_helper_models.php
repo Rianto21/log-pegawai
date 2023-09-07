@@ -107,17 +107,19 @@ namespace App\Models{
  * @property int $id_log_harian
  * @property string $title
  * @property string $body
+ * @property string $foto
  * @property string $tanggal
  * @property int $id_pegawai
  * @property \App\Models\StatusLogHarian|null $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Pegawai|null $pegawai
+ * @property-read \App\Models\Pegawai $pegawai
  * @method static \Illuminate\Database\Eloquent\Builder|LogHarian newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LogHarian newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LogHarian query()
  * @method static \Illuminate\Database\Eloquent\Builder|LogHarian whereBody($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LogHarian whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LogHarian whereFoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LogHarian whereIdLogHarian($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LogHarian whereIdPegawai($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LogHarian whereStatus($value)
@@ -133,9 +135,8 @@ namespace App\Models{
  * App\Models\Pegawai
  *
  * @property int $id_pegawai
- * @property string $username
- * @property string $password
  * @property string $email
+ * @property string $password
  * @property string $nama_pegawai
  * @property int $id_dinas
  * @property int $id_bagian
@@ -162,7 +163,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Pegawai whereNamaPegawai($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pegawai wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pegawai whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pegawai whereUsername($value)
  */
 	class Pegawai extends \Eloquent {}
 }

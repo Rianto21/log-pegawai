@@ -27,6 +27,6 @@ class LogHarian extends Model
 
   public function pegawai(): BelongsTo
   {
-    return $this->belongsTo(Pegawai::class);
+    return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id_pegawai');
   }
 }

@@ -12,7 +12,7 @@
     @else
       <div class="flex gap-x-4">
         <a href="{{ route('profile') }}" class="text-white rounded-md bg-teal-600 hover:bg-teal-400 duration-200 px-2 py-1">Profile</a>
-        <a href="/" class="text-white rounded-md bg-red-600 hover:bg-red-400 duration-200 px-2 py-1">Log Out</a>
+        <a href="/logout" class="text-white rounded-md bg-red-600 hover:bg-red-400 duration-200 px-2 py-1">Log Out</a>
       </div>
     @endguest
   </div>

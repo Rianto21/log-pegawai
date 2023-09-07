@@ -20,11 +20,11 @@ class LogHarianController extends Controller
       return view('log_page.home')->with(array('daftar_log_harian' => $daftar_log_harian, 'daftar_pegawai' => $daftar_pegawai));
     } elseif (auth('pegawai')->user()->jabatan == 2) {
       $daftar_log_harian = LogHarian::whereIdPegawai(auth('pegawai')->id())->orderBy('tanggal', 'desc')->get();
-      $daftar_pegawai = Pegawai::whereIdBagian(auth('pegawai')->user()->id_bagian)->get();
+      $daftar_pegawai = Pegawai::whereIdBagian(auth('pegawai')->user()->id_bagian)->whereJabatan(3)->get();
       return view('log_page.home')->with(array('daftar_log_harian' => $daftar_log_harian, 'daftar_pegawai' => $daftar_pegawai));
     } else {
       $daftar_log_harian = LogHarian::whereIdPegawai(auth('pegawai')->id())->orderBy('tanggal', 'desc')->get();
-      return view('log_page.home')->with(array('daftar_log_harian' => $daftar_log_harian));
+      return view('log_page.home')->with(array('daftar_log_harian' => $daftar_log_harian, 'daftar_pegawai' => array()));
     }
   }
 
@@ -117,27 +117,28 @@ class LogHarianController extends Controller
 
   public function verifikasi_log_harian(Request $request)
   {
-    $request->validate([
-      'id_log_harian' => 'required|exists:log_harian,id_log_harian',
-      'status' => 'required|min:2|max:3'
-    ]);
+    // $request->validate([
+    //   'id_log_harian' => 'required|exists:log_harian,id_log_harian',
+    //   'status' => 'required|min:2|max:3'
+    // ]);
 
     $log_harian = LogHarian::whereIdLogHarian($request->id_log_harian)->with('pegawai')->first();
+    // dd($log_harian);
     if (auth('pegawai')->user()->jabatan == 1) {
-      if (auth($log_harian->pegawai->jabatan()) == 2 && auth('pegawai')->user()->id_bagian == $log_harian->pegawai->id_bagian) {
+      if ($log_harian->pegawai->jabatan == 2 && auth('pegawai')->user()->id_bagian == $log_harian->pegawai->id_bagian) {
         LogHarian::whereIdLogHarian($request->id_log_harian)->update(['status' => $request->status]);
         session()->flash('message', 'Status log harian pegawai berhasil diperbarui');
-        return redirect('/log-harian');
+        return redirect('/log-harian/verifikasi/' . $log_harian->id_pegawai);
       }
     } elseif (auth('pegawai')->user()->jabatan == 2) {
-      if (auth($log_harian->pegawai->jabatan()) == 3 && auth('pegawai')->user()->id_bagian == $log_harian->pegawai->id_bagian) {
+      if ($log_harian->pegawai->jabatan == 3 && auth('pegawai')->user()->id_bagian == $log_harian->pegawai->id_bagian) {
         LogHarian::whereIdLogHarian($request->id_log_harian)->update(['status' => $request->status]);
         session()->flash('message', 'Status log harian pegawai berhasil diperbarui');
-        return redirect('/log-harian');
+        return redirect('/log-harian/verifikasi/' . $log_harian->id_pegawai);
       }
     }
     session()->flash('message', 'Anda tidak bisa melakukan verifikasi log harian ini.');
-    return redirect('/log-harian');
+    return redirect('/log-harian/verifikasi/' . $log_harian->id_pegawai);
   }
   /**
    * Remove the specified resource from storage.

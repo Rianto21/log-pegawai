@@ -41,7 +41,7 @@ class Pegawai extends Authenticatable
 
   public function jabatan(): BelongsTo
   {
-    return $this->belongsTo(Jabatan::class,);
+    return $this->belongsTo(Jabatan::class);
   }
 
   public function log_harian(): HasMany
